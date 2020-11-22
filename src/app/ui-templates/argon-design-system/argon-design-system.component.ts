@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject, Renderer2, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/filter';
 import { DOCUMENT } from '@angular/common';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
+import { filter } from 'rxjs/operators';
 
 var didScroll;
 var lastScrollTop = 0;
@@ -16,9 +16,36 @@ var navbarHeight = 0;
   styleUrls: ['./argon-design-system.component.scss']
 })
 export class ArgonDesignSystemComponent implements OnInit {
-    private _router!: Subscription;
 
-    constructor( private renderer : Renderer2, private router: Router, @Inject(DOCUMENT,) private document: any, private element : ElementRef, public location: Location) {}
+    private navbar! : HTMLElement;
+
+    constructor( private renderer : Renderer2, private router: Router, @Inject(DOCUMENT,) private document: any, private element : ElementRef, public location: Location) {
+    //This has to be done in the constructor. Not ngOnInit.
+    //https://stackoverflow.com/questions/56634455/angular-router-event-navigationend-not-firing-when-expected       
+      this.router.events.subscribe(() => {
+          if (window.outerWidth > 991) {
+              window.document.children[0].scrollTop = 0;
+          }else{
+              window.document.activeElement!.scrollTop = 0;
+          }
+          this.renderer.listen('window', 'scroll', (event) => {
+              const number = window.scrollY;
+              if (number > 150 || window.pageYOffset > 150) {
+                  // add logic
+                  this.navbar.classList.add('headroom--not-top');
+              } else {
+                  // remove logic
+                  this.navbar.classList.remove('headroom--not-top');
+              }
+          });
+      });
+      this.hasScrolled();
+    }
+
+    ngOnInit() {
+        this.navbar = this.element.nativeElement.children[0].children[0];
+    }
+
     @HostListener('window:scroll', ['$event'])
     hasScrolled() {
 
@@ -52,25 +79,4 @@ export class ArgonDesignSystemComponent implements OnInit {
 
         lastScrollTop = st;
     };
-    ngOnInit() {
-      var navbar : HTMLElement = this.element.nativeElement.children[0].children[0];
-      this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe(() => {
-          if (window.outerWidth > 991) {
-              window.document.children[0].scrollTop = 0;
-          }else{
-              window.document.activeElement!.scrollTop = 0;
-          }
-          this.renderer.listen('window', 'scroll', (event) => {
-              const number = window.scrollY;
-              if (number > 150 || window.pageYOffset > 150) {
-                  // add logic
-                  navbar.classList.add('headroom--not-top');
-              } else {
-                  // remove logic
-                  navbar.classList.remove('headroom--not-top');
-              }
-          });
-      });
-      this.hasScrolled();
-    }
 }
