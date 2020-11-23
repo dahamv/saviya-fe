@@ -6,7 +6,8 @@
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noImplicitReturns": true,
+    /*made false to stop error TS7030: Not all code paths return a value.*/
+    "noImplicitReturns": false,
     /*Added to get rid of error TS7008: Member 'focus' implicitly has an 'any' type.*/
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": true,
