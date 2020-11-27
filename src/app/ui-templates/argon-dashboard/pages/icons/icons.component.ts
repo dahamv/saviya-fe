@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-icons',
   templateUrl: './icons.component.html',
-  styleUrls: ['./icons.component.scss']
+  styleUrls: ['../../argon-dashboard.component.scss', './icons.component.scss']
 })
 export class IconsComponent implements OnInit {
 
-  public copy: string;
+  public copy!: string;
   constructor() { }
 
   ngOnInit() {

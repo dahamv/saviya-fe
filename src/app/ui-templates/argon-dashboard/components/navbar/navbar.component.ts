@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['../../argon-dashboard.component.scss', './navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
   public focus;
-  public listTitles: any[];
+  public listTitles!: any[];
   public location: Location;
   constructor(location: Location,  private element: ElementRef, private router: Router) {
     this.location = location;

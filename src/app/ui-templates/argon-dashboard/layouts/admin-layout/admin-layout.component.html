@@ -1,6 +1,9 @@
 <!-- Sidenav -->
+
 <app-sidebar></app-sidebar>
-<div class="main-content">
+<!--Since auth-layout also has main-content class, add admin-layout class to distinguish. 
+see media query in _sidebar-and-main-panel ()-->
+<div class="main-content admin-layout">
   <!-- Top navbar -->
   <app-navbar></app-navbar>
   <!-- Pages -->
@@ -9,3 +12,5 @@
     <app-footer></app-footer>
   </div>
 </div>
+
+

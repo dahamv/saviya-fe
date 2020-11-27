@@ -20,11 +20,11 @@ export const ROUTES: RouteInfo[] = [
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['../../argon-dashboard.component.scss', './sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
 
-  public menuItems: any[];
+  public menuItems!: any[];
   public isCollapsed = true;
 
   constructor(private router: Router) { }

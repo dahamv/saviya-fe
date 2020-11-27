@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Renderer2, ElementRef, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, Inject, Renderer2, ElementRef, ViewChild, HostListener, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { DOCUMENT } from '@angular/common';
@@ -15,7 +15,7 @@ var navbarHeight = 0;
   templateUrl: './argon-design-system.component.html',
   styleUrls: ['./argon-design-system.component.scss']
 })
-export class ArgonDesignSystemComponent implements OnInit {
+export class ArgonDesignSystemComponent implements OnInit, OnDestroy {
 
     private navbar! : HTMLElement;
 
@@ -44,6 +44,15 @@ export class ArgonDesignSystemComponent implements OnInit {
 
     ngOnInit() {
         this.navbar = this.element.nativeElement.children[0].children[0];
+        /**argon-dashboard class has to be added to the root html tag since all argon.css styles 
+         * for argon-design-system are wrapped in .argon-design-system class to avoid collisions with argon-dashboard*/
+        var html = document.getElementsByTagName("html")[0];
+        html.classList.add("argon-design-system");
+    }
+
+    ngOnDestroy() {
+        var html = document.getElementsByTagName("html")[0];
+        html.classList.remove("argon-design-system");
     }
 
     @HostListener('window:scroll', ['$event'])

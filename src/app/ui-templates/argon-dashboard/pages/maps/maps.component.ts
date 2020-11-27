@@ -4,7 +4,7 @@ declare const google: any;
 @Component({
   selector: 'app-maps',
   templateUrl: './maps.component.html',
-  styleUrls: ['./maps.component.scss']
+  styleUrls: ['../../argon-dashboard.component.scss', './maps.component.scss']
 })
 export class MapsComponent implements OnInit {
 
