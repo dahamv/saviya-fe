@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { UiTemplatesComponent } from './ui-templates.component';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'ui-templates', component: UiTemplatesComponent 
+    },
+    {
+        path: 'ui-templates', 
         children: [
             {
                 path: 'design-system',

@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { UiTemplatesComponent } from './ui-templates/ui-templates.component';
 
 const routes: Routes = [
-    {path: 'ui-templates', loadChildren: () => import('./ui-templates/ui-templates.module').then(m => m.UITemplatesModule)},
+    { path: '',   redirectTo: '/ui-templates', pathMatch: 'full' },
 ];
 
 @NgModule({

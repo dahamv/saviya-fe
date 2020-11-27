@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { UITemplatesRoutingModule } from './ui-templates-routing.module';
-import { ArgonDesignSystemComponent } from './argon-design-system/argon-design-system.component';
+import { UiTemplatesComponent } from './ui-templates.component';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    UITemplatesRoutingModule
-  ]
+    declarations: [UiTemplatesComponent],
+    imports: [
+        CommonModule,
+        UITemplatesRoutingModule
+    ]
 })
-export class UITemplatesModule { }
+export class UITemplatesModule {
+}
